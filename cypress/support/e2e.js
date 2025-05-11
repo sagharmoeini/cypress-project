@@ -14,4 +14,19 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
+
+// function click(category) {
+
+//     cy.contains(category)
+// }
+
+Cypress.on("uncaught:exception", (err, runnable) => {
+  // اگر پیام خطا مربوط به cross-origin یا چیزهایی که نمی‌خوای تست fail کنه بود
+  if (err.message.includes("Script error")) {
+    return false; // جلوی fail شدن تست رو می‌گیره
+  }
+
+  // برای بقیه خطاها اجازه بده Cypress گزارش بده
+  return true;
+});
